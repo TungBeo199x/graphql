@@ -1,0 +1,28 @@
+
+schema {
+    query: Query
+    mutation: Mutation
+}
+
+type User{
+    id: String!
+    username: String!
+    avatarUrl: String
+}
+
+type CustomPagination{
+    data: [User]
+    totalPage: Int!
+    currentPage: Int!
+}
+
+type Query {
+    findPageUser(username: String, page: Int, size: Int, sort: String, direction: Boolean): CustomPagination!
+    findAllUser: [User]
+    findByUserId (userId: String!): User
+}
+
+type Mutation {
+    createNewUser(username: String!, avatarUrl: String): User!
+    updateUser(id: String!, username: String, avatarUrl: String): User!
+}
